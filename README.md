@@ -4,7 +4,7 @@ Asemic utility library that introduces a forward pipe 'operator' (if you can cal
 
 ## Why?
 Syntactic sugar.
-On a more serious note, standard C# async composition is often a mess of `await` keywords and intermediate variables. This library uses Source Generators to 'stitch' the state machines together, allowing you to pipe directly into and out of asynchronous tasks without the annoying syntax salt.
+On a more serious note, standard C# async composition is often a mess of `await` keywords and intermediate variables. This library 'stitches' the state machines together via source generation, so you could pipe directly into and out of asynchronous tasks without the annoying syntax salt.
 
 ## Usage
 ```csharp
@@ -32,7 +32,7 @@ int GetStringLength(string s) => s.Length;
 ## Roadmap
 I'm not yet sure whether I'll keep working on this library, but here are my nearest ideas:
 * **0.0.2-alpha:** Null-short-circuiting support via `?._()`;
-* **Future:** Unsafe pipes leveraging function pointers (`delegate*`) for true zero-allocation execution. Expected syntax is `.__()` (but it's not yet decided upon).
+* **Future:** Unsafe pipes leveraging function pointers (`delegate*`) for true zero-allocation execution. Expected syntax is `.__()` (but it's not yet decided upon). Not gonna lie, `?.__()` looks diabolical.
 
 ## License
 MIT. Check LICENSE.
