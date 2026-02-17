@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <Version>0.0.1-alpha</Version>
     <Authors>spnchdev</Authors>
-    <Description>Long-needed, (almost) zero-alloc pipes, now in C#.</Description>
+    <Description>Semi-long-needed, (almost) zero-alloc pipes, now in C#.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/spnchdev/csharp-pipe</PackageProjectUrl>
     <RepositoryUrl>https://github.com/spnchdev/csharp-pipe.git</RepositoryUrl>
