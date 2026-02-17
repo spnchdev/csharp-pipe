@@ -11,12 +11,14 @@
     <PackageProjectUrl>https://github.com/spnchdev/csharp-pipe</PackageProjectUrl>
     <RepositoryUrl>https://github.com/spnchdev/csharp-pipe.git</RepositoryUrl>
     <PackageTags>pipe;functional;asynchrony;source-generator;ValueTask;C#</PackageTags>
+    <PackageIcon>pipe.jpg</PackageIcon>
   </PropertyGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\Spnch.Csharp.Pipe.Generators\Spnch.Csharp.Pipe.Generators.csproj"
                       OutputItemType="Analyzer"
                       ReferenceOutputAssembly="false" />
+    <None Include="..\assets\icon\pipe.jpg" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

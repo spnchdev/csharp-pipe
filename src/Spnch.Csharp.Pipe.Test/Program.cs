@@ -36,6 +36,7 @@ stringLengthAsync
     ._(Console.WriteLine);
 // shall output "36, 144, 324, 576, 900, 1296, 1764, 2304, 2916, 3600"
 
+// async functions as parameters to the pipe method
 await ValueTask.FromResult("async works")
     ._(async s => 
     {
