@@ -34,17 +34,17 @@ int GetStringLength(string s) => s.Length;
 ```
 
 ## Key Features
-* **Asemic Design:** Uses simple syntax (`._()`) to stay visually minimal. Under the hood it's just a method named '_';
-* **Async-Native:** Automatic handling of `Task`/`ValueTask` via incremental source generation;
-* **Performance:** Extensive use of `[MethodImpl(MethodImplOptions.AggressiveInlining)]` to ensure the JIT optimizes the pipe away.
+* **Asemic Design:** Uses simple syntax (`._()`) to stay visually minimal. Under the hood it's just a method named '_'
+* **Async-Native:** Automatic handling of `Task`/`ValueTask` via incremental source generation
+* **Performance:** Extensive use of `[MethodImpl(MethodImplOptions.AggressiveInlining)]` to ensure the JIT optimizes the pipe away
 
 ## Contributing
 PRs welcome. Issues also welcome. "???????"s and "why--"s are expected and accepted.
 
 ## Roadmap
 I'm not yet sure whether I'll keep working on this library, but here are my nearest ideas:
-* **0.0.2-alpha:** Null-short-circuiting support via `?._()`;
-* **Future:** Unsafe pipes leveraging function pointers (`delegate*`) for true zero-allocation execution. Expected syntax is `.__()` (but it's not yet decided upon). Not gonna lie, `?.__()` looks diabolical.
+* **0.0.2-alpha:** Null-short-circuiting support via `?._()`
+* **Future:** Unsafe pipes leveraging function pointers (`delegate*`) for true zero-allocation execution. Expected syntax is `.__()` (but it's not yet decided upon). Not gonna lie, `?.__()` looks diabolical
 
 ## License
 MIT. Check LICENSE.
