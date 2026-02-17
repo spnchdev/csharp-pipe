@@ -36,6 +36,14 @@ stringLengthAsync
     ._(Console.WriteLine);
 // shall output "36, 144, 324, 576, 900, 1296, 1764, 2304, 2916, 3600"
 
+await ValueTask.FromResult("async works")
+    ._(async s => 
+    {
+        await Task.Delay(100);
+        return s.Length;
+    })
+    ._(len => Console.WriteLine($"String length is: {len}"));
+
 return;
 
 // user defined methods

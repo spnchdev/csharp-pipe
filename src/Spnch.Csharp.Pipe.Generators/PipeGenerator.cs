@@ -7,39 +7,61 @@ public class PipeGenerator : IIncrementalGenerator
 {
     public void Initialize(IncrementalGeneratorInitializationContext context)
     {
-        context.RegisterPostInitializationOutput(ctx =>
+        context.RegisterPostInitializationOutput(ctx => 
             ctx.AddSource("Spnch.Csharp.Pipe.g.cs", """
+                                                    using System;
+                                                    using System.Runtime.CompilerServices;
+                                                    using System.Threading.Tasks;
 
-                                             using System;
-                                             using System.Runtime.CompilerServices;
-                                             using System.Threading.Tasks;
+                                                    namespace Spnch.Csharp.Pipe;
 
-                                             namespace Spnch.Csharp.Pipe;
+                                                    public static partial class PipeExtensions
+                                                    {
+                                                        // priority 3: unwrapping ValueTask
+                                                        [OverloadResolutionPriority(3)]
+                                                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                                                        public static async ValueTask<TR> _<T, TR>(this ValueTask<T> t, Func<T, ValueTask<TR>> f) => await f(await t);
 
-                                             public static partial class PipeExtensions
-                                             {
-                                                 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-                                                 public static async ValueTask<TR> _<T, TR>(this ValueTask<T> t, Func<T, TR> f) => f(await t);
-                                                 
-                                                 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-                                                 public static async ValueTask<T> _<T>(this ValueTask<T> t, Action<T> a)
-                                                 {
-                                                     var val = await t;
-                                                     a(val);
-                                                     return val;
-                                                 }
-                                                 
-                                                 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-                                                 public static async Task<TR> _<T, TR>(this Task<T> t, Func<T, TR> f) => f(await t);
-                                                 
-                                                 [MethodImpl(MethodImplOptions.AggressiveInlining)]
-                                                 public static async Task<T> _<T>(this Task<T> task, Action<T> a)
-                                                 {
-                                                     var val = await task;
-                                                     a(val);
-                                                     return val;
-                                                 }
-                                             }
-                                             """));
+                                                        [OverloadResolutionPriority(3)]
+                                                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                                                        public static async Task<TR> _<T, TR>(this Task<T> t, Func<T, ValueTask<TR>> f) => await f(await t);
+
+                                                        // priority 2: unwrapping Task
+                                                        [OverloadResolutionPriority(2)]
+                                                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                                                        public static async ValueTask<TR> _<T, TR>(this ValueTask<T> t, Func<T, Task<TR>> f) => await f(await t);
+
+                                                        [OverloadResolutionPriority(2)]
+                                                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                                                        public static async Task<TR> _<T, TR>(this Task<T> t, Func<T, Task<TR>> f) => await f(await t);
+
+                                                        // priority 1: standard maps/actions
+                                                        [OverloadResolutionPriority(1)]
+                                                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                                                        public static async ValueTask<TR> _<T, TR>(this ValueTask<T> t, Func<T, TR> f) => f(await t);
+                                                        
+                                                        [OverloadResolutionPriority(1)]
+                                                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                                                        public static async Task<TR> _<T, TR>(this Task<T> t, Func<T, TR> f) => f(await t);
+
+                                                        [OverloadResolutionPriority(1)]
+                                                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                                                        public static async ValueTask<T> _<T>(this ValueTask<T> t, Action<T> a)
+                                                        {
+                                                            var val = await t;
+                                                            a(val);
+                                                            return val;
+                                                        }
+
+                                                        [OverloadResolutionPriority(1)]
+                                                        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+                                                        public static async Task<T> _<T>(this Task<T> task, Action<T> a)
+                                                        {
+                                                            var val = await task;
+                                                            a(val);
+                                                            return val;
+                                                        }
+                                                    }
+                                                    """));
     }
 }
