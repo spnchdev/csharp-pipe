@@ -36,3 +36,5 @@ I'm not yet sure whether I'll keep working on this library, but here are my near
 
 ## License
 MIT. Check LICENSE.
+
+<sub>please don't use this in prod</sub>
